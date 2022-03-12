@@ -1,5 +1,5 @@
 {
-  "name": "greedy_snake",
+  "name": "snake",
   "version": "1.0.0",
   "description": "贪吃蛇案例",
   "main": "index.js",
