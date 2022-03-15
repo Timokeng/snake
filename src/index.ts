@@ -1,2 +1,8 @@
+// 引入样式
 import './style/index.less'
-console.log('123');
+
+import Food from './module/Food';
+import ScorePanel from './module/ScorePanel';
+
+const food = new Food();
+food.change();
