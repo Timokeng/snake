@@ -1,8 +1,6 @@
 // 引入样式
 import './style/index.less'
 
-import Food from './module/Food';
-import ScorePanel from './module/ScorePanel';
+import GameControl from './module/GameControl';
 
-const food = new Food();
-food.change();
+const gameControl = new GameControl();

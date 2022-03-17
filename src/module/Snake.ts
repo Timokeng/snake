@@ -30,3 +30,5 @@ class Snake {
         this.element.appendChild(el);
     }
 }
+
+export default Snake;
