@@ -33,7 +33,7 @@ class GameControl {
         let X = this.snake.X;
         let Y = this.snake.Y;
 
-        switch(this.direction) {
+        switch (this.direction) {
             case 'ArrowUp':
                 Y -= 10;
                 break;
@@ -48,17 +48,30 @@ class GameControl {
                 break;
         }
 
-        if(Y >= 300 || X >= 300 || Y < 0 || X < 0) {
-            this.islive = false;
+        this.checkEat(X, Y);
+        
+
+
+        try {
+            this.snake.X = X;
+            this.snake.Y = Y;
+        } catch(e) {
+            // alert('蛇死了，游戏结束');
             console.log('lose');
-            return;
+            this.islive = false;
         }
 
-        this.snake.X = X;
-        this.snake.Y = Y;
-
         const time = 300 - (this.scorePanel.level - 1) * 20;
-        setTimeout(this.run.bind(this), time);
+        this.islive && setTimeout(this.run.bind(this), time);
+    }
+
+    checkEat(X: number, Y:number) {
+        const ifEat = X === this.food.X && Y === this.food.Y;
+        if(ifEat) {
+            this.scorePanel.addScore();
+            this.snake.addBody();
+            this.food.change();
+        }
     }
 }
 

@@ -18,10 +18,26 @@ class Snake {
     }
 
     set X(val: number) {
+        if(this.X === val) {
+            return
+        }
+
+        if(val < 0 || val >= 300) {
+            throw new Error('snake dead')
+        }
+
         this.head.style.left = val + 'px';
     }
 
     set Y(val: number) {
+        if(this.Y === val) {
+            return
+        }
+
+        if(val < 0 || val >= 300) {
+            throw new Error('snake dead')
+        }
+
         this.head.style.top = val + 'px';
     }
 
