@@ -26,7 +26,8 @@ class GameControl {
     }
 
     keyDownHandler(event: KeyboardEvent) {
-        this.direction = event.key;
+        const ifTurnRound = this.validateKeyVal(event.key);
+        ifTurnRound && (this.direction = event.key);
     }
 
     run() {
@@ -50,18 +51,15 @@ class GameControl {
 
         this.checkEat(X, Y);
         
-
-
         try {
             this.snake.X = X;
             this.snake.Y = Y;
         } catch(e) {
-            // alert('蛇死了，游戏结束');
-            console.log('lose');
+            console.log((e as Error).message + 'Game Over!');
             this.islive = false;
         }
 
-        const time = 300 - (this.scorePanel.level - 1) * 20;
+        const time = 300 - (this.scorePanel.level - 1) * 30;
         this.islive && setTimeout(this.run.bind(this), time);
     }
 
@@ -72,6 +70,22 @@ class GameControl {
             this.snake.addBody();
             this.food.change();
         }
+    }
+
+    validateKeyVal(dir: string) {
+        if(this.direction !== 'ArrowUp' && dir === 'ArrowDown') {
+            return true;
+        }
+        if(this.direction !== 'ArrowDown' && dir === 'ArrowUp') {
+            return true;
+        }
+        if(this.direction !== 'ArrowRight' && dir === 'ArrowLeft') {
+            return true;
+        }
+        if(this.direction !== 'ArrowLeft' && dir === 'ArrowRight') {
+            return true;
+        }
+        return false;
     }
 }
 
